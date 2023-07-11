@@ -73,10 +73,10 @@ class Kota extends GetView<HomeController> {
         onChanged: (City? data) {
           if (data != null) {
             if (tipe == "asal") {
-              print("Kota / Kabupaten Asal : ${data!.cityName}");
+              print("Kota / Kabupaten Asal : ${data.cityName}");
               controller.kotaAsalID.value = int.parse(data.cityId!);
             } else {
-              print("Kota / Kabupaten Tujuan : ${data!.cityName}");
+              print("Kota / Kabupaten Tujuan : ${data.cityName}");
               controller.kotaTujuanID.value = int.parse(data.cityId!);
             }
           } else {

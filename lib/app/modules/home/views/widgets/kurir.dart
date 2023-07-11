@@ -41,7 +41,7 @@ class Kurir extends GetView<HomeController> {
       itemAsString: (item) => item["code"],
       onChanged: (value) {
         if (value != null) {
-          print("${value!["code"]}");
+          print("${value["code"]}");
           controller.kurir.value = value["code"];
         } else {
           controller.kurir.value = "";

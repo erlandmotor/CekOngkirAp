@@ -16,45 +16,47 @@ class HomeView extends GetView<HomeController> {
           title: const Text('Ongkir Indonesia'),
           centerTitle: true,
         ),
-        body: ListView(
-          padding: EdgeInsets.all(20),
-          children: [
-            Provinsi(tipe: "asal"),
-            Obx(
-              () => controller.hiddenKotaAsal.isFalse
-                  ? Kota(
-                      provID: controller.provAsalID.value,
-                      tipe: "asal",
-                    )
-                  : SizedBox(),
-            ),
-            Provinsi(tipe: "tujuan"),
-            Obx(
-              () => controller.hiddenKotaTujuan.isFalse
-                  ? Kota(
-                      provID: controller.provTujuanID.value,
-                      tipe: "tujuan",
-                    )
-                  : SizedBox(),
-            ),
-            BeratBadan(),
-            SizedBox(height: 5),
-            Kurir(),
-            SizedBox(height: 50),
-            Obx(
-              () => controller.hiddenButton.isTrue
-                  ? SizedBox()
-                  : ElevatedButton(
-                      onPressed: () => controller.ongkosKirim(),
-                      child: Text("Cek Ongkos Kirim"),
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(vertical: 25),
+        body: SafeArea(
+          child: ListView(
+            padding: EdgeInsets.all(20),
+            children: [
+              Provinsi(tipe: "asal"),
+              Obx(
+                () => controller.hiddenKotaAsal.isFalse
+                    ? Kota(
+                        provID: controller.provAsalID.value,
+                        tipe: "asal",
+                      )
+                    : SizedBox(),
+              ),
+              Provinsi(tipe: "tujuan"),
+              Obx(
+                () => controller.hiddenKotaTujuan.isFalse
+                    ? Kota(
+                        provID: controller.provTujuanID.value,
+                        tipe: "tujuan",
+                      )
+                    : SizedBox(),
+              ),
+              BeratBadan(),
+              SizedBox(height: 5),
+              Kurir(),
+              SizedBox(height: 50),
+              Obx(
+                () => controller.hiddenButton.isTrue
+                    ? SizedBox()
+                    : ElevatedButton(
+                        onPressed: () => controller.ongkosKirim(),
+                        child: Text("Cek Ongkos Kirim"),
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(vertical: 25),
+                        ),
                       ),
-                    ),
-            ),
+              ),
 
-            //untuk kota
-          ],
+              //untuk kota
+            ],
+          ),
         ));
   }
 }

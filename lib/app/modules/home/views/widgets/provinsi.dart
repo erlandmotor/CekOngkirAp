@@ -70,7 +70,7 @@ class Provinsi extends GetView<HomeController> {
         itemAsString: (item) => item.province,
         onChanged: (Province? data) {
           if (data != null) {
-            print(data!.province);
+            print(data.province);
 
             if (tipe == "asal") {
               controller.hiddenKotaAsal.value = false;

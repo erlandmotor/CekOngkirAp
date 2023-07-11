@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:check_ongkir/app/modules/home/courier_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -143,9 +144,34 @@ class HomeController extends GetxController {
       );
       var data = json.decode(response.body) as Map<String, dynamic>;
       var result = data["rajaongkir"]["results"];
-      print(result);
+
+      if (result != null) {
+        var ListAllCourier = Courier.fromJsonList(result) as List<dynamic>;
+        var courier = ListAllCourier[0];
+        Get.defaultDialog(
+          title: courier.name,
+          content: Column(
+            children: courier.costs
+                .map(
+                  (e) => ListTile(
+                    title: Text("${e.service}"),
+                    subtitle: Text("${e.cost[0].value}"),
+                    trailing: courier.code == "pos"
+                        ? Text("${e.cost[0].etd}")
+                        : Text("${e.cost[0].etd} HARI"),
+                  ),
+                )
+                .toList(),
+          ),
+        );
+      } else {
+        Get.defaultDialog(
+            title: "Terjadi Kesalahan",
+            middleText: "Berat barang tidak boleh di bawah 1 gram");
+      }
     } catch (err) {
       print(err);
+
       Get.defaultDialog(
         title: "Terjadi Kesalahanan",
         middleText: err.toString(),

@@ -1,7 +1,9 @@
+import 'package:check_ongkir/app/modules/home/views/widgets/kurir.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
+import 'widgets/berat_barang.dart';
 import 'widgets/city.dart';
 import 'widgets/provinsi.dart';
 
@@ -34,6 +36,21 @@ class HomeView extends GetView<HomeController> {
                       tipe: "tujuan",
                     )
                   : SizedBox(),
+            ),
+            BeratBadan(),
+            SizedBox(height: 5),
+            Kurir(),
+            SizedBox(height: 50),
+            Obx(
+              () => controller.hiddenButton.isTrue
+                  ? SizedBox()
+                  : ElevatedButton(
+                      onPressed: () => controller.ongkosKirim(),
+                      child: Text("Cek Ongkos Kirim"),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 25),
+                      ),
+                    ),
             ),
 
             //untuk kota

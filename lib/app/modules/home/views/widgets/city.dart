@@ -88,6 +88,7 @@ class Kota extends GetView<HomeController> {
               controller.kotaTujuanID.value = 0;
             }
           }
+          controller.showButton();
         },
       ),
     );
